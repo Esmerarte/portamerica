@@ -23,10 +23,10 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 15;
+const nonuse = 16;
 const FETCH_TIMEOUT = 4000;
-const STATIC_CACHE = "static-cache-v7";
-const DYNAMIC_CACHE = "dynamic-cache-v7";
+const STATIC_CACHE = "static-cache-v8";
+const DYNAMIC_CACHE = "dynamic-cache-v8";
 
 const STATIC_CACHE_FILES = [
     './build/main.js',
@@ -149,7 +149,7 @@ self.addEventListener('fetch', function(e) {
                 });
             })
         );
-    } else {
+    } else if(STATIC_CACHE.map(item => (item.startsWith('./')?item.substring(2):item)).some(itemS => itemS.endsWith(itemS))) {
         e.respondWith(
             caches.match(e.request).then(function(response) {
                 if (response) {
@@ -167,4 +167,7 @@ self.addEventListener('fetch', function(e) {
             })
         );
     }
+	else {
+		e.respondWith(fetch(e.request));
+	}
 });
