@@ -1,29 +1,5 @@
 'use strict';
 
-/*function bytesToSize(bytes) {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
-    if (bytes === 0) return 'n/a'
-    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
-    if (i === 0) return `${bytes} ${sizes[i]})`
-    return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
-};
-
-function cacheSize(c) {
-    return c.keys().then(a => {
-        return Promise.all(
-            a.map(req => c.match(req).then(res => res.clone().blob().then(b => b.size)))
-        ).then(a => a.reduce((acc, n) => acc + n, 0));
-    });
-};
-
-function cachesSize() {
-    return caches.keys().then(a => {
-        return Promise.all(
-            a.map(n => caches.open(n).then(c => cacheSize(c)))
-        ).then(a => a.reduce((acc, n) => acc + n, 0));
-    });
-};*/
-
 function timeoutPromise(ms, promise, controller) {
     return new Promise((resolve, reject) => {
         let timeoutId = setTimeout(() => {
@@ -47,10 +23,10 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 14;
+const nonuse = 15;
 const FETCH_TIMEOUT = 4000;
-const STATIC_CACHE = "static-cache-v6";
-const DYNAMIC_CACHE = "dynamic-cache-v6";
+const STATIC_CACHE = "static-cache-v7";
+const DYNAMIC_CACHE = "dynamic-cache-v7";
 
 const STATIC_CACHE_FILES = [
     './build/main.js',
@@ -112,7 +88,6 @@ self.addEventListener('message', (e) => {
                 }
             }
             self.skipWaiting();
-            console.log(e);
         });
     }
 });
