@@ -23,10 +23,10 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 27;
+const nonuse = 29;
 const FETCH_TIMEOUT = 4000;
-const STATIC_CACHE = "static-cache-v12";
-const DYNAMIC_CACHE = "dynamic-cache-v12";
+const STATIC_CACHE = "static-cache-v14";
+const DYNAMIC_CACHE = "dynamic-cache-v14";
 
 const STATIC_CACHE_FILES = [
     './build/main.js',
