@@ -54,7 +54,7 @@ const STATIC_CACHE_FILES = [
     './assets/icon/icono167x167.jpg',
     'https://fonts.googleapis.com/css?family=Oswald',
     'https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752HT8Gl-1PK62t.woff2',
-    '/assets/fonts/fontawesome-webfont.woff2?v=4.7.0'
+    './assets/fonts/fontawesome-webfont.woff2?v=4.7.0'
 ];
 
 const DYNAMIC_CACHE_FILES = [
