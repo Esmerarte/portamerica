@@ -23,10 +23,10 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 29;
+const nonuse = 30;
 const FETCH_TIMEOUT = 4000;
-const STATIC_CACHE = "static-cache-v14";
-const DYNAMIC_CACHE = "dynamic-cache-v14";
+const STATIC_CACHE = "static-cache-v16";
+const DYNAMIC_CACHE = "dynamic-cache-v16";
 
 const STATIC_CACHE_FILES = [
     './build/main.js',
@@ -53,7 +53,8 @@ const STATIC_CACHE_FILES = [
     './assets/icon/icono180x180.jpg',
     './assets/icon/icono167x167.jpg',
     'https://fonts.googleapis.com/css?family=Oswald',
-    'https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752HT8Gl-1PK62t.woff2'
+    'https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752HT8Gl-1PK62t.woff2',
+    '/assets/fonts/fontawesome-webfont.woff2?v=4.7.0'
 ];
 
 const DYNAMIC_CACHE_FILES = [
