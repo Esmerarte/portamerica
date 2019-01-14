@@ -23,10 +23,11 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 31;
+const nonuse = 32;
 const FETCH_TIMEOUT = 4000;
-const STATIC_CACHE = "static-cache-v17";
-const DYNAMIC_CACHE = "dynamic-cache-v17";
+const FETCH_TIMEOUT_IMG = 12000;
+const STATIC_CACHE = "static-cache-v18";
+const DYNAMIC_CACHE = "dynamic-cache-v18";
 
 const STATIC_CACHE_FILES = [
     './build/main.js',
@@ -150,7 +151,7 @@ self.addEventListener('fetch', function(e) {
         const controller = new AbortController();
         const signal = controller.signal;
         e.respondWith(
-            timeoutPromise(FETCH_TIMEOUT, fetch(e.request, { signal }), controller).then(resp => {
+            timeoutPromise(FETCH_TIMEOUT_IMG, fetch(e.request, { signal }), controller).then(resp => {
                 if (resp) {
                     return resp.clone();
                 } else {
