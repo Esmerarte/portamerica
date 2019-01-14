@@ -456,7 +456,7 @@ var pjXML = (function () {
 
     return doc;
   }
-
+  me.Node = Node;
   return me;
 }());
 

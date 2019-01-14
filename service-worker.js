@@ -23,7 +23,7 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 30;
+const nonuse = 31;
 const FETCH_TIMEOUT = 4000;
 const STATIC_CACHE = "static-cache-v16";
 const DYNAMIC_CACHE = "dynamic-cache-v16";
@@ -47,32 +47,51 @@ const STATIC_CACHE_FILES = [
     './assets/fonts/roboto-bold.woff2',
     './assets/icon/pa-favicon.png',
     './assets/imgs/noimagebg.png',
+    './assets/imgs/logo.png',
     './assets/scripts/pjxml.js',
+    './assets/scripts/NoSleep.min.js',
     './assets/icons/icon-144x144.png',
     './assets/icon/icono152x152.jpg',
     './assets/icon/icono180x180.jpg',
     './assets/icon/icono167x167.jpg',
+    './assets/icons/icon-72x72.png',
+    './assets/icons/icon-96x96.png',
+    './assets/icons/icon-128x128.png',
+    './assets/icons/icon-152x152.png',
+    './assets/icons/icon-192x192.png',
+    './assets/icons/icon-384x384.png',
+    './assets/icons/icon-512x512.png',
     'https://fonts.googleapis.com/css?family=Oswald',
     'https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752HT8Gl-1PK62t.woff2',
-    './assets/fonts/fontawesome-webfont.woff2?v=4.7.0'
+    './assets/fonts/fontawesome-webfont.woff2?v=4.7.0',
+    './assets/imgs/youtube.png',
+    './assets/fonts/Oswald-Regular.ttf',
+    './assets/scripts/granim.min.js',
+    './assets/scripts/stencil/wp-components.js',
+    './assets/scripts/stencil/wp-components/fpnb38dm.entry.js',
+    './assets/scripts/stencil/wp-components/fpnb38dm.es5.entry.js',
+    './assets/scripts/stencil/wp-components/fpnb38dm.sc.entry.js',
+    './assets/scripts/stencil/wp-components/fpnb38dm.sc.es5.entry.js',
+    './assets/scripts/stencil/wp-components/wp-components.p7drg4rl.js',
+    './assets/scripts/stencil/wp-components/wp-components.registry.json',
+    './assets/scripts/stencil/wp-components/wp-components.s888cq0g.js'
 ];
 
 const DYNAMIC_CACHE_FILES = [
     './assets/data/artistas.json',
+    './assets/data/horarios.json',
     'https://portamerica.es/wp-json/wp/v2/posts?_embed&per_page=10&offset=0'
 ];
 
 self.addEventListener('install', function(e) {
     e.waitUntil(Promise.all([
-            caches.open(STATIC_CACHE).then(function(cache) {
-                return cache.addAll(STATIC_CACHE_FILES);
-            })
-            ,
-            caches.open(DYNAMIC_CACHE).then(function(cache) {
-                return cache.addAll(DYNAMIC_CACHE_FILES);
-            })
-        ])
-    );
+        caches.open(STATIC_CACHE).then(function(cache) {
+            return cache.addAll(STATIC_CACHE_FILES);
+        }),
+        caches.open(DYNAMIC_CACHE).then(function(cache) {
+            return cache.addAll(DYNAMIC_CACHE_FILES);
+        })
+    ]));
 });
 
 self.addEventListener('activate', event => {
@@ -95,8 +114,9 @@ self.addEventListener('message', (e) => {
 
 self.addEventListener('fetch', function(e) {
     if (e.request.url.startsWith('https://portamerica.es/wp-json/wp/v2/posts') ||
-        e.request.url.startsWith('http://portamerica.es/wp-json/wp/v2/posts') || 
-        e.request.url.endsWith('/assets/data/artistas.json')) {
+        e.request.url.startsWith('http://portamerica.es/wp-json/wp/v2/posts') ||
+        e.request.url.endsWith('/assets/data/artistas.json') ||
+        e.request.url.endsWith('/assets/data/horarios.json')) {
         console.log(e.request.url);
         const controller = new AbortController();
         const signal = controller.signal;
@@ -123,8 +143,8 @@ self.addEventListener('fetch', function(e) {
             })
         );
     } else if (e.request.url.startsWith('https://portamerica.es/wp-content/uploads/') ||
-        e.request.url.startsWith('http://portamerica.es/wp-content/uploads/') || 
-        e.request.url.startsWith('https://portamerica.es/app/') || 
+        e.request.url.startsWith('http://portamerica.es/wp-content/uploads/') ||
+        e.request.url.startsWith('https://portamerica.es/app/') ||
         e.request.url.startsWith('http://portamerica.es/app/')) {
 
         const controller = new AbortController();
@@ -150,7 +170,7 @@ self.addEventListener('fetch', function(e) {
                 });
             })
         );
-    } else if(STATIC_CACHE_FILES.map(item => (item.startsWith('./')?item.substring(2):item)).some(itemS => (itemS.length > 0 && e.request.url.endsWith(itemS)))) {
+    } else if (STATIC_CACHE_FILES.map(item => (item.startsWith('./') ? item.substring(2) : item)).some(itemS => (itemS.length > 0 && e.request.url.endsWith(itemS)))) {
         e.respondWith(
             caches.match(e.request).then(function(response) {
                 if (response) {
@@ -167,8 +187,26 @@ self.addEventListener('fetch', function(e) {
 
             })
         );
+    } else if (e.request.url.includes('/#/')) {
+        console.log(e.request.url);
+        e.respondWith(
+            caches.match('./').then(function(response) {
+                if (response) {
+                    console.log('cache: ', './');
+                    return response;
+                } else
+                    return fetch('./').then(res => {
+                        caches.open(STATIC_CACHE).then(function(cache) {
+                            return cache.put('./', res.clone());
+                        });
+                        return res.clone();
+                    });
+            }).catch(err => {
+
+            })
+        );
+    } else {
+        console.log(e.request.url);
+        e.respondWith(fetch(e.request));
     }
-	else {
-		e.respondWith(fetch(e.request));
-	}
 });

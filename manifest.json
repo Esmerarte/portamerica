@@ -1,10 +1,10 @@
 {
-    "name": "PortAmérica",
-    "short_name": "PortAmérica",
+    "name": "PortAmerica",
+    "short_name": "PortAmerica",
     "theme_color": "#000000",
     "background_color": "#000000",
     "display": "standalone",
-    "orientation": "portrait",
+    "orientation": "portrait-primary",
     "Scope": "/",
     "start_url": "index.html",
     "icons": [{

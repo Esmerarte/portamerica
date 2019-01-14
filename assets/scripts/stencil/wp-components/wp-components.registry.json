@@ -1,0 +1,21 @@
+{
+  "namespace": "WpComponents",
+  "fsNamespace": "wp-components",
+  "loader": "../wp-components.js",
+  "core": "wp-components.s888cq0g.js",
+  "corePolyfilled": "wp-components.p7drg4rl.js",
+  "components": {
+    "wp-gallery": {
+      "bundleIds": {
+        "$": "fpnb38dm"
+      },
+      "encapsulation": "shadow"
+    },
+    "wp-img": {
+      "bundleIds": {
+        "$": "fpnb38dm"
+      },
+      "encapsulation": "shadow"
+    }
+  }
+}
