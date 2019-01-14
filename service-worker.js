@@ -25,8 +25,8 @@ function timeoutPromise(ms, promise, controller) {
 };
 const nonuse = 31;
 const FETCH_TIMEOUT = 4000;
-const STATIC_CACHE = "static-cache-v16";
-const DYNAMIC_CACHE = "dynamic-cache-v16";
+const STATIC_CACHE = "static-cache-v17";
+const DYNAMIC_CACHE = "dynamic-cache-v17";
 
 const STATIC_CACHE_FILES = [
     './build/main.js',
@@ -68,13 +68,13 @@ const STATIC_CACHE_FILES = [
     './assets/fonts/Oswald-Regular.ttf',
     './assets/scripts/granim.min.js',
     './assets/scripts/stencil/wp-components.js',
-    './assets/scripts/stencil/wp-components/fpnb38dm.entry.js',
-    './assets/scripts/stencil/wp-components/fpnb38dm.es5.entry.js',
-    './assets/scripts/stencil/wp-components/fpnb38dm.sc.entry.js',
-    './assets/scripts/stencil/wp-components/fpnb38dm.sc.es5.entry.js',
-    './assets/scripts/stencil/wp-components/wp-components.p7drg4rl.js',
+    './assets/scripts/stencil/wp-components/7nanmvyv.entry.js',
+    './assets/scripts/stencil/wp-components/7nanmvyv.es5.entry.js',
+    './assets/scripts/stencil/wp-components/7nanmvyv.sc.entry.js',
+    './assets/scripts/stencil/wp-components/7nanmvyv.sc.es5.entry.js',
     './assets/scripts/stencil/wp-components/wp-components.registry.json',
-    './assets/scripts/stencil/wp-components/wp-components.s888cq0g.js'
+    './assets/scripts/stencil/wp-components/wp-components.sg1vcl3w.js',
+    './assets/scripts/stencil/wp-components/wp-components.vvvimcem.js'
 ];
 
 const DYNAMIC_CACHE_FILES = [
@@ -188,7 +188,6 @@ self.addEventListener('fetch', function(e) {
             })
         );
     } else if (e.request.url.includes('/#/')) {
-        console.log(e.request.url);
         e.respondWith(
             caches.match('./').then(function(response) {
                 if (response) {
