@@ -23,20 +23,20 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 32;
+const nonuse = 31;
 const FETCH_TIMEOUT = 4000;
 const FETCH_TIMEOUT_IMG = 12000;
-const STATIC_CACHE = "static-cache-v18";
-const DYNAMIC_CACHE = "dynamic-cache-v18";
+const STATIC_CACHE = "static-cache-v19";
+const DYNAMIC_CACHE = "dynamic-cache-v19";
 
 const STATIC_CACHE_FILES = [
+    './',
     './build/main.js',
     './build/vendor.js',
     './build/main.css',
     './assets/css/animate.min.css',
     './build/polyfills.js',
     './index.html',
-    './',
     './manifest.json',
     './assets/fonts/ionicons.ttf',
     './assets/fonts/ionicons.woff?v=3.0.0-alpha.3',
@@ -51,6 +51,7 @@ const STATIC_CACHE_FILES = [
     './assets/imgs/logo.png',
     './assets/scripts/pjxml.js',
     './assets/scripts/NoSleep.min.js',
+    './assets/scripts/granim.min.js',
     './assets/icons/icon-144x144.png',
     './assets/icon/icono152x152.jpg',
     './assets/icon/icono180x180.jpg',
@@ -64,10 +65,10 @@ const STATIC_CACHE_FILES = [
     './assets/icons/icon-512x512.png',
     'https://fonts.googleapis.com/css?family=Oswald',
     'https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752HT8Gl-1PK62t.woff2',
+    'https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752GT8Gl-1PKw.woff2',
     './assets/fonts/fontawesome-webfont.woff2?v=4.7.0',
     './assets/imgs/youtube.png',
     './assets/fonts/Oswald-Regular.ttf',
-    './assets/scripts/granim.min.js',
     './assets/scripts/stencil/wp-components.js',
     './assets/scripts/stencil/wp-components/7nanmvyv.entry.js',
     './assets/scripts/stencil/wp-components/7nanmvyv.es5.entry.js',
@@ -75,7 +76,8 @@ const STATIC_CACHE_FILES = [
     './assets/scripts/stencil/wp-components/7nanmvyv.sc.es5.entry.js',
     './assets/scripts/stencil/wp-components/wp-components.registry.json',
     './assets/scripts/stencil/wp-components/wp-components.sg1vcl3w.js',
-    './assets/scripts/stencil/wp-components/wp-components.vvvimcem.js'
+    './assets/scripts/stencil/wp-components/wp-components.vvvimcem.js',
+    './assets/css/bootstrap-grid.min.css'
 ];
 
 const DYNAMIC_CACHE_FILES = [
@@ -114,11 +116,12 @@ self.addEventListener('message', (e) => {
 });
 
 self.addEventListener('fetch', function(e) {
+    console.log(e.request.url);
     if (e.request.url.startsWith('https://portamerica.es/wp-json/wp/v2/posts') ||
         e.request.url.startsWith('http://portamerica.es/wp-json/wp/v2/posts') ||
         e.request.url.endsWith('/assets/data/artistas.json') ||
         e.request.url.endsWith('/assets/data/horarios.json')) {
-        console.log(e.request.url);
+        console.log('network then cache');
         const controller = new AbortController();
         const signal = controller.signal;
         e.respondWith(
@@ -147,7 +150,7 @@ self.addEventListener('fetch', function(e) {
         e.request.url.startsWith('http://portamerica.es/wp-content/uploads/') ||
         e.request.url.startsWith('https://portamerica.es/app/') ||
         e.request.url.startsWith('http://portamerica.es/app/')) {
-
+        console.log('network then fail img');
         const controller = new AbortController();
         const signal = controller.signal;
         e.respondWith(
@@ -172,10 +175,10 @@ self.addEventListener('fetch', function(e) {
             })
         );
     } else if (STATIC_CACHE_FILES.map(item => (item.startsWith('./') ? item.substring(2) : item)).some(itemS => (itemS.length > 0 && e.request.url.endsWith(itemS)))) {
+        console.log('cache first');
         e.respondWith(
             caches.match(e.request).then(function(response) {
                 if (response) {
-                    console.log('cache: ', e.request.url);
                     return response;
                 } else
                     return fetch(e.request).then(res => {
@@ -188,11 +191,11 @@ self.addEventListener('fetch', function(e) {
 
             })
         );
-    } else if (e.request.url.includes('/#/')) {
+    } else if (e.request.url.includes('/#/') || e.request.url.replace(self.location.origin, '') == '/') {
+        console.log('index');
         e.respondWith(
             caches.match('./').then(function(response) {
                 if (response) {
-                    console.log('cache: ', './');
                     return response;
                 } else
                     return fetch('./').then(res => {
@@ -206,7 +209,7 @@ self.addEventListener('fetch', function(e) {
             })
         );
     } else {
-        console.log(e.request.url);
+        console.log('network');
         e.respondWith(fetch(e.request));
     }
 });
