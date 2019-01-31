@@ -51,7 +51,6 @@ const STATIC_CACHE_FILES = [
     './assets/imgs/logo.png',
     './assets/scripts/pjxml.js',
     './assets/scripts/NoSleep.min.js',
-    './assets/scripts/granim.min.js',
     './assets/scripts/jquery.adaptive-backgrounds.js',
     './assets/icons/icon-144x144.png',
     './assets/icon/icono152x152.jpg',
