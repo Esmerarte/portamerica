@@ -2,18 +2,18 @@
   "namespace": "WpComponents",
   "fsNamespace": "wp-components",
   "loader": "../wp-components.js",
-  "core": "wp-components.vvvimcem.js",
-  "corePolyfilled": "wp-components.sg1vcl3w.js",
+  "core": "wp-components.uelpvdyu.js",
+  "corePolyfilled": "wp-components.rgp6n6s9.js",
   "components": {
     "wp-gallery": {
       "bundleIds": {
-        "$": "7nanmvyv"
+        "$": "qscl5a3b"
       },
       "encapsulation": "shadow"
     },
     "wp-img": {
       "bundleIds": {
-        "$": "7nanmvyv"
+        "$": "qscl5a3b"
       },
       "encapsulation": "shadow"
     }

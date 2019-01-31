@@ -43,10 +43,11 @@
     <link rel="apple-touch-startup-image" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" href="assets/splash/SplashScreen2048x2732.jpg">
     <script src="assets/scripts/pjxml.js"></script>
     <script src="assets/scripts/NoSleep.min.js"></script>
-    <script src="assets/scripts/granim.min.js"></script>
+    <script src="assets/scripts/jquery.adaptive-backgrounds.js"></script>
     <script src="assets/scripts/stencil/wp-components.js"></script>
     <script>
-        /**/var hasNewUpdate = false;
+        /*var startUrl = new URL(window.location.href);*/
+        var hasNewUpdate = false;
         if ('serviceWorker' in navigator) {
             var currentWorker = null;
             navigator.serviceWorker.register('service-worker.js')

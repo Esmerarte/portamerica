@@ -23,11 +23,11 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 40;
+const nonuse = 31;
 const FETCH_TIMEOUT = 4000;
-const FETCH_TIMEOUT_IMG = 12000;
-const STATIC_CACHE = "static-cache-v20";
-const DYNAMIC_CACHE = "dynamic-cache-v20";
+const FETCH_TIMEOUT_IMG = 30000;
+const STATIC_CACHE = "static-cache-v18";
+const DYNAMIC_CACHE = "dynamic-cache-v18";
 
 const STATIC_CACHE_FILES = [
     './',
@@ -52,6 +52,7 @@ const STATIC_CACHE_FILES = [
     './assets/scripts/pjxml.js',
     './assets/scripts/NoSleep.min.js',
     './assets/scripts/granim.min.js',
+    './assets/scripts/jquery.adaptive-backgrounds.js',
     './assets/icons/icon-144x144.png',
     './assets/icon/icono152x152.jpg',
     './assets/icon/icono180x180.jpg',
@@ -70,13 +71,13 @@ const STATIC_CACHE_FILES = [
     './assets/imgs/youtube.png',
     './assets/fonts/Oswald-Regular.ttf',
     './assets/scripts/stencil/wp-components.js',
-    './assets/scripts/stencil/wp-components/7nanmvyv.entry.js',
-    './assets/scripts/stencil/wp-components/7nanmvyv.es5.entry.js',
-    './assets/scripts/stencil/wp-components/7nanmvyv.sc.entry.js',
-    './assets/scripts/stencil/wp-components/7nanmvyv.sc.es5.entry.js',
+    './assets/scripts/stencil/wp-components/qscl5a3b.entry.js',
+    './assets/scripts/stencil/wp-components/qscl5a3b.es5.entry.js',
+    './assets/scripts/stencil/wp-components/qscl5a3b.sc.entry.js',
+    './assets/scripts/stencil/wp-components/qscl5a3b.sc.es5.entry.js',
     './assets/scripts/stencil/wp-components/wp-components.registry.json',
-    './assets/scripts/stencil/wp-components/wp-components.sg1vcl3w.js',
-    './assets/scripts/stencil/wp-components/wp-components.vvvimcem.js',
+    './assets/scripts/stencil/wp-components/wp-components.rgp6n6s9.js',
+    './assets/scripts/stencil/wp-components/wp-components.uelpvdyu.js',
     './assets/css/bootstrap-grid.min.css'
 ];
 
