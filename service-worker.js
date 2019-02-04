@@ -23,11 +23,11 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 31;
+const nonuse = 32;
 const FETCH_TIMEOUT = 4000;
 const FETCH_TIMEOUT_IMG = 30000;
-const STATIC_CACHE = "static-cache-v18";
-const DYNAMIC_CACHE = "dynamic-cache-v18";
+const STATIC_CACHE = "static-cache-v19";
+const DYNAMIC_CACHE = "dynamic-cache-v19";
 
 const STATIC_CACHE_FILES = [
     './',
