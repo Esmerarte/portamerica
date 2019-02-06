@@ -39,6 +39,8 @@
     <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" href="assets/splash/SplashScreen1536x2048.jpg">
     <!-- iPad Pro 10.5" (1668px x 2224px) -->
     <link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" href="assets/splash/SplashScreen1668x2224.jpg">
+    <!-- iPad Pro 11” (1668px x 2388px) --> 
+    <link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" href="">
     <!-- iPad Pro 12.9" (2048px x 2732px) -->
     <link rel="apple-touch-startup-image" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" href="assets/splash/SplashScreen2048x2732.jpg">
     <script src="assets/scripts/pjxml.js"></script>
@@ -91,6 +93,7 @@
                 detail: e
             });
             window.dispatchEvent(window.appInstallEvent);
+            return false;
         });             
         /**/
     </script>
