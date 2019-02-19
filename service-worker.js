@@ -26,8 +26,8 @@ function timeoutPromise(ms, promise, controller) {
 const nonuse = 33;
 const FETCH_TIMEOUT = 4000;
 const FETCH_TIMEOUT_IMG = 30000;
-const STATIC_CACHE = "static-cache-v20";
-const DYNAMIC_CACHE = "dynamic-cache-v20";
+const STATIC_CACHE = "static-cache-v21";
+const DYNAMIC_CACHE = "dynamic-cache-v21";
 
 const STATIC_CACHE_FILES = [
     './',
