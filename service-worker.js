@@ -23,7 +23,7 @@ function timeoutPromise(ms, promise, controller) {
         );
     })
 };
-const nonuse = 35;
+const nonuse = 36;
 const FETCH_TIMEOUT = 4000;
 const FETCH_TIMEOUT_IMG = 30000;
 const STATIC_CACHE = "static-cache-v21";
